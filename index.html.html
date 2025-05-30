@@ -1,0 +1,781 @@
+
+          <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latinx Substance Abuse: Detox/Residential Treatment and Cultural Competency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #3d5a96 100%);
+        }
+
+        .slide {
+            display: none;
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideTransition 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideTransition {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            text-align: center;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #2a5298;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 1.6em;
+            margin-bottom: 40px;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .content {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            flex-grow: 1;
+        }
+
+        .bullet-point {
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .bullet-point::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: #2a5298;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .model-highlight {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #2196f3;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .treatment-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border: 2px solid #4caf50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .criteria-box {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border: 2px solid #ff9800;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .core-function-box {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            border: 2px solid #9c27b0;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cultural-competency-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 2px solid #f44336;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .manual-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 12px 25px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #3d5a96, #2a5298);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+
+        .center-content {
+            text-align: center;
+        }
+
+        .source-citation {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .pathway-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .flow-step {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .flow-step::after {
+            content: "↓";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #2196f3;
+            font-size: 1.8em;
+            font-weight: bold;
+            background: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid #2196f3;
+        }
+
+        .flow-step:last-child::after {
+            display: none;
+        }
+
+        .emphasis {
+            color: #1e3c72;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">11</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <h1>Latinx Substance Abuse Treatment</h1>
+            <p class="subtitle">Detox/Residential Settings and Cultural Competency</p>
+            <div class="content center-content">
+                <p style="margin-top: 40px; font-size: 1.2em;">Understanding treatment structures, biopsychosocial approaches, and culturally responsive care for Latinx individuals in residential addiction treatment</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Detox/Residential Treatment Settings -->
+        <div class="slide">
+            <h2>Detox/Residential Treatment Settings</h2>
+            <div class="content">
+                <div class="treatment-box">
+                    <h3>Detoxification Programs</h3>
+                    <div class="bullet-point">24-hour medical supervision and monitoring</div>
+                    <div class="bullet-point">Safe withdrawal management with medication support</div>
+                    <div class="bullet-point">Duration: 3-10 days depending on substance and severity</div>
+                </div>
+                <div class="treatment-box">
+                    <h3>Residential Treatment</h3>
+                    <div class="bullet-point">Live-in facility with 24-hour therapeutic support</div>
+                    <div class="bullet-point">Structured daily programming and group activities</div>
+                    <div class="bullet-point">Duration: 30-90 days (or longer for complex cases)</div>
+                </div>
+                <div class="source-citation">Source: SAMHSA TIP 45: Detoxification and Substance Abuse Treatment (2020 update)</div>
+            </div>
+        </div>
+
+        <!-- Slide 3: The Biopsychosocial Model -->
+        <div class="slide">
+            <h2>The Biopsychosocial Model of Addiction</h2>
+            <div class="content">
+                <div class="model-highlight">
+                    Integrates biological, psychological, and social factors to understand and treat addiction as a complex, multi-dimensional disease
+                </div>
+                <div class="three-column">
+                    <div>
+                        <h3>Biological</h3>
+                        <div class="bullet-point">Genetic predisposition</div>
+                        <div class="bullet-point">Brain chemistry changes</div>
+                        <div class="bullet-point">Physical withdrawal symptoms</div>
+                        <div class="bullet-point">Medical complications</div>
+                    </div>
+                    <div>
+                        <h3>Psychological</h3>
+                        <div class="bullet-point">Mental health disorders</div>
+                        <div class="bullet-point">Trauma and PTSD</div>
+                        <div class="bullet-point">Coping mechanisms</div>
+                        <div class="bullet-point">Cognitive patterns</div>
+                    </div>
+                    <div>
+                        <h3>Social</h3>
+                        <div class="bullet-point">Family dynamics</div>
+                        <div class="bullet-point">Cultural influences</div>
+                        <div class="bullet-point">Environmental stressors</div>
+                        <div class="bullet-point">Social support systems</div>
+                    </div>
+                </div>
+                <div class="source-citation">Source: Alpha Healing Center (2021); Cambridge Core Biopsychosocial Research (2024)</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Treatment Intervention Structure -->
+        <div class="slide">
+            <h2>Structure of Treatment Interventions</h2>
+            <div class="content">
+                <div class="two-column">
+                    <div>
+                        <div class="treatment-box">
+                            <h3>Medical Components</h3>
+                            <div class="bullet-point">Medical detoxification protocols</div>
+                            <div class="bullet-point">Medication-assisted treatment (MAT)</div>
+                            <div class="bullet-point">Health assessments and monitoring</div>
+                            <div class="bullet-point">Co-occurring disorder management</div>
+                        </div>
+                        <div class="treatment-box">
+                            <h3>Therapeutic Components</h3>
+                            <div class="bullet-point">Individual counseling sessions</div>
+                            <div class="bullet-point">Group therapy and peer support</div>
+                            <div class="bullet-point">Family therapy and education</div>
+                            <div class="bullet-point">Cognitive-behavioral therapy (CBT)</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="treatment-box">
+                            <h3>Holistic Services</h3>
+                            <div class="bullet-point">Recreational and art therapy</div>
+                            <div class="bullet-point">Spiritual and mindfulness practices</div>
+                            <div class="bullet-point">Life skills training</div>
+                            <div class="bullet-point">Educational and vocational support</div>
+                        </div>
+                        <div class="treatment-box">
+                            <h3>Discharge Planning</h3>
+                            <div class="bullet-point">Aftercare coordination</div>
+                            <div class="bullet-point">Community resource linkage</div>
+                            <div class="bullet-point">Relapse prevention planning</div>
+                            <div class="bullet-point">Ongoing support arrangements</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="source-citation">Source: Pathways Recovery Center (2024); NCBI Treatment Guidelines (2022)</div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Pathway to Sobriety -->
+        <div class="slide">
+            <h2>How the Biopsychosocial Model Leads to Sobriety</h2>
+            <div class="content">
+                <div class="pathway-flow">
+                    <div class="flow-step">
+                        <h3>Biological Stabilization</h3>
+                        <div class="bullet-point">Safe detox removes substances from the body</div>
+                        <div class="bullet-point">Brain chemistry begins to rebalance</div>
+                        <div class="bullet-point">Physical health stabilizes, enabling psychological work</div>
+                    </div>
+                    <div class="flow-step">
+                        <h3>Psychological Healing</h3>
+                        <div class="bullet-point">Address underlying mental health issues</div>
+                        <div class="bullet-point">Process trauma and develop healthy coping skills</div>
+                        <div class="bullet-point">Restructure thinking patterns and behaviors</div>
+                    </div>
+                    <div class="flow-step">
+                        <h3>Social Reconstruction</h3>
+                        <div class="bullet-point">Repair and strengthen family relationships</div>
+                        <div class="bullet-point">Build healthy social support networks</div>
+                        <div class="bullet-point">Develop skills for community reintegration</div>
+                    </div>
+                    <div class="flow-step">
+                        <h3>Sustained Recovery</h3>
+                        <div class="bullet-point">Integration of biological, psychological, and social gains</div>
+                        <div class="bullet-point">Long-term maintenance of sobriety through continued support</div>
+                    </div>
+                </div>
+                <div class="source-citation">Source: SAMHSA Biopsychosocial Treatment Models (2023)</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Treatment Placement Criteria -->
+        <div class="slide">
+            <h2>Why Choose Residential vs. Other Settings?</h2>
+            <div class="content">
+                <div class="criteria-box">
+                    <h3>ASAM Criteria for Residential Placement</h3>
+                    <div class="bullet-point"><span class="emphasis">Medical Necessity:</span> Severe withdrawal requiring 24-hour monitoring</div>
+                    <div class="bullet-point"><span class="emphasis">Psychosocial Instability:</span> Lack of stable housing or support system</div>
+                    <div class="bullet-point"><span class="emphasis">Previous Treatment Failures:</span> Multiple unsuccessful outpatient attempts</div>
+                    <div class="bullet-point"><span class="emphasis">Co-occurring Disorders:</span> Complex mental health issues requiring intensive care</div>
+                    <div class="bullet-point"><span class="emphasis">Environmental Factors:</span> High-risk living situations with substance availability</div>
+                </div>
+                <div class="model-highlight">
+                    <span class="emphasis">Key Advantage:</span> Residential treatment provides the structure and intensive support needed when biological, psychological, and social factors are severely compromised
+                </div>
+                <div class="source-citation">Source: ASAM Criteria Update (2020-2024); NCBI Treatment Placement Guidelines</div>
+            </div>
+        </div>
+
+        <!-- Slide 7: The 12 Core Functions - Part 1 -->
+        <div class="slide">
+            <h2>SUD Counselor Duties: 12 Core Functions (Part 1)</h2>
+            <div class="content">
+                <div class="two-column">
+                    <div>
+                        <div class="core-function-box">
+                            <h3>1. Screening</h3>
+                            <div class="bullet-point">Determine eligibility for treatment</div>
+                            <div class="bullet-point">Evaluate substance use severity</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>2. Intake</h3>
+                            <div class="bullet-point">Complete admission procedures</div>
+                            <div class="bullet-point">Gather demographic and insurance information</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>3. Orientation</h3>
+                            <div class="bullet-point">Introduce program rules and expectations</div>
+                            <div class="bullet-point">Explain client rights and procedures</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>4. Assessment</h3>
+                            <div class="bullet-point">Comprehensive biopsychosocial evaluation</div>
+                            <div class="bullet-point">Identify strengths, needs, and barriers</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="core-function-box">
+                            <h3>5. Treatment Planning</h3>
+                            <div class="bullet-point">Develop individualized recovery goals</div>
+                            <div class="bullet-point">Create action steps and timelines</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>6. Counseling</h3>
+                            <div class="bullet-point">Facilitate individual and group therapy</div>
+                            <div class="bullet-point">Support behavior change and skill building</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>7. Case Management</h3>
+                            <div class="bullet-point">Coordinate external services and resources</div>
+                            <div class="bullet-point">Monitor treatment progress and needs</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>8. Crisis Intervention</h3>
+                            <div class="bullet-point">Respond to emergency situations</div>
+                            <div class="bullet-point">Implement safety and stabilization plans</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="source-citation">Source: SAMHSA TAP 21: Addiction Counseling Competencies (2020); City Vision University (2023)</div>
+            </div>
+        </div>
+
+        <!-- Slide 8: The 12 Core Functions - Part 2 -->
+        <div class="slide">
+            <h2>SUD Counselor Duties: 12 Core Functions (Part 2)</h2>
+            <div class="content">
+                <div class="two-column">
+                    <div>
+                        <div class="core-function-box">
+                            <h3>9. Client Education</h3>
+                            <div class="bullet-point">Provide addiction education and psychoeducation</div>
+                            <div class="bullet-point">Teach relapse prevention strategies</div>
+                            <div class="bullet-point">Share information about recovery resources</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>10. Referral</h3>
+                            <div class="bullet-point">Identify needs beyond program scope</div>
+                            <div class="bullet-point">Connect clients with appropriate community resources</div>
+                            <div class="bullet-point">Coordinate care with external providers</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="core-function-box">
+                            <h3>11. Record Keeping</h3>
+                            <div class="bullet-point">Maintain accurate treatment documentation</div>
+                            <div class="bullet-point">Write progress notes and discharge summaries</div>
+                            <div class="bullet-point">Ensure confidentiality and compliance</div>
+                        </div>
+                        <div class="core-function-box">
+                            <h3>12. Consultation</h3>
+                            <div class="bullet-point">Collaborate with multidisciplinary team</div>
+                            <div class="bullet-point">Seek supervision for complex cases</div>
+                            <div class="bullet-point">Participate in treatment team meetings</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-highlight">
+                    These 12 core functions ensure comprehensive, ethical, and effective addiction counseling across all treatment settings
+                </div>
+                <div class="source-citation">Source: IC&RC Standards (2021); Absolute Advocacy Training (2019)</div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Cultural Competency Skills for Latinx Clients -->
+        <div class="slide">
+            <h2>Special Cultural Competency Skills for Latinx Clients</h2>
+            <div class="content">
+                <div class="two-column">
+                    <div>
+                        <div class="cultural-competency-box">
+                            <h3>Language & Communication</h3>
+                            <div class="bullet-point">Bilingual counseling capabilities (Spanish/English)</div>
+                            <div class="bullet-point">Understanding of cultural communication styles</div>
+                            <div class="bullet-point">Awareness of non-verbal cultural cues</div>
+                        </div>
+                        <div class="cultural-competency-box">
+                            <h3>Cultural Values Integration</h3>
+                            <div class="bullet-point"><span class="emphasis">Familismo:</span> Family-centered treatment approaches</div>
+                            <div class="bullet-point"><span class="emphasis">Respeto:</span> Understanding hierarchical respect patterns</div>
+                            <div class="bullet-point"><span class="emphasis">Machismo/Marianismo:</span> Addressing gender role expectations</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="cultural-competency-box">
+                            <h3>Trauma-Informed Approaches</h3>
+                            <div class="bullet-point">Immigration-related trauma and stress</div>
+                            <div class="bullet-point">Historical and intergenerational trauma awareness</div>
+                            <div class="bullet-point">Acculturation stress and identity conflicts</div>
+                        </div>
+                        <div class="cultural-competency-box">
+                            <h3>Spiritual Integration</h3>
+                            <div class="bullet-point">Incorporating faith and spirituality in treatment</div>
+                            <div class="bullet-point">Respecting traditional healing practices</div>
+                            <div class="bullet-point">Understanding religious coping mechanisms</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="source-citation">Source: Fish, V. (2024). Hispanic Cultural Competency Research; SAMHSA TIP 59 (2021); Pew Cultural Competency Guidelines (2021)</div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Evidence-Based Cultural Adaptations -->
+        <div class="slide">
+            <h2>Evidence-Based Cultural Adaptations</h2>
+            <div class="content">
+                <div class="model-highlight">
+                    <span class="emphasis">Research Finding:</span> Hispanics report stronger attitudinal barriers to drug abuse treatment than any other racial/ethnic group
+                </div>
+                <div class="treatment-box">
+                    <h3>Successful Adaptations Include:</h3>
+                    <div class="bullet-point"><span class="emphasis">Family Involvement:</span> Including extended family in treatment planning and therapy sessions</div>
+                    <div class="bullet-point"><span class="emphasis">Cultural Metaphors:</span> Using culturally relevant examples and storytelling in therapy</div>
+                    <div class="bullet-point"><span class="emphasis">Community Integration:</span> Connecting with Latino community organizations and churches</div>
+                    <div class="bullet-point"><span class="emphasis">Peer Support:</span> Latino peer counselors and support groups</div>
+                </div>
+                <div class="cultural-competency-box">
+                    <h3>Treatment Outcomes</h3>
+                    <div class="bullet-point">Cultural competence includes being bilingual and incorporating culture in treatment</div>
+                    <div class="bullet-point">Improved treatment completion rates when culturally responsive services are provided</div>
+                    <div class="bullet-point">Reduced dropout rates in culturally adapted programs</div>
+                </div>
+                <div class="source-citation">Source: Cultural Accommodation Research (2022); IntechOpen Cultural Competence Review (2023)</div>
+            </div>
+        </div>
+
+        <!-- Slide 11: Call to Action -->
+        <div class="slide">
+            <h2>Building Culturally Responsive Treatment</h2>
+            <div class="content center-content">
+                <div class="model-highlight">
+                    <span class="emphasis">Current Gap:</span> 94.8% of Latinos needing SUD treatment don't receive specialty care
+                </div>
+                <div class="bullet-point">Implement the biopsychosocial model with cultural adaptations for Latinx clients</div>
+                <div class="bullet-point">Train counselors in the 12 core functions with cultural competency enhancement</div>
+                <div class="bullet-point">Develop family-centered residential programs that honor Latino cultural values</div>
+                <div class="bullet-point">Integrate spiritual and traditional healing practices into evidence-based treatment</div>
+                <div class="bullet-point">Address historical trauma and acculturation stress in treatment planning</div>
+                <div class="bullet-point">Ensure bilingual, bicultural staffing in residential facilities</div>
+                <p style="font-size: 1.3em; margin-top: 40px; color: #ffd700; font-weight: bold;">Effective treatment requires understanding that recovery happens within cultural context</p>
+                <div class="source-citation">Source: Headlands ATS Cultural Competency Guidelines (2024); SAMHSA National Standards (2023)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="manual-controls">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">⬅️ Previous</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next ➡️</button>
+        <button class="nav-btn" id="restart-btn" onclick="restartPresentation()">🔄 Restart</button>
+        <button class="nav-btn" onclick="toggleFullscreen()">🖥️ Fullscreen</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let startTime = Date.now();
+        
+        // Timing per slide for reference only (in seconds)
+        const slideTiming = [
+            17,  // Slide 1: Title (17 seconds)
+            108, // Slide 2: Treatment Settings (1 min 48 sec) 
+            144, // Slide 3: Biopsychosocial Model (2 min 24 sec)
+            144, // Slide 4: Treatment Structure (2 min 24 sec)
+            108, // Slide 5: Pathway to Sobriety (1 min 48 sec)
+            72,  // Slide 6: Placement Criteria (1 min 12 sec)
+            144, // Slide 7: 12 Core Functions Part 1 (2 min 24 sec)
+            72,  // Slide 8: 12 Core Functions Part 2 (1 min 12 sec)
+            72,  // Slide 9: Cultural Competency (1 min 12 sec)
+            36,  // Slide 10: Evidence-Based Adaptations (36 seconds)
+            36   // Slide 11: Call to Action (36 seconds)
+        ];
+        
+        let currentSlideStartTime = Date.now();
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            currentSlideStartTime = Date.now();
+            updateProgressBar();
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            } else {
+                // Presentation finished, go to first slide
+                showSlide(0);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+        }
+
+        function restartPresentation() {
+            showSlide(0);
+            startTime = Date.now();
+            currentSlideStartTime = Date.now();
+        }
+
+        // Add fullscreen toggle functionality
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+                document.body.classList.add('presentation-mode');
+            } else {
+                document.exitFullscreen();
+                document.body.classList.remove('presentation-mode');
+            }
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'r' || e.key === 'R') {
+                restartPresentation();
+            } else if (e.key === 'Home') {
+                showSlide(0);
+            } else if (e.key === 'End') {
+                showSlide(totalSlides - 1);
+            } else if (e.key === 'f' || e.key === 'F11') {
+                e.preventDefault();
+                toggleFullscreen();
+            } else if (e.key === 'Escape') {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                    document.body.classList.remove('presentation-mode');
+                }
+            }
+        });
+
+        // Initialize presentation
+        showSlide(0);
+
+        // Add slide timing reference display
+        function addSlideTimer() {
+            const timer = document.createElement('div');
+            timer.id = 'slide-timer';
+            timer.style.cssText = `
+                position: fixed;
+                top: 30px;
+                left: 30px;
+                background: rgba(0, 0, 0, 0.3);
+                padding: 10px 20px;
+                border-radius: 20px;
+                font-size: 1.1em;
+                font-weight: bold;
+                backdrop-filter: blur(5px);
+                min-width: 200px;
+            `;
+            document.body.appendChild(timer);
+            
+            function updateTimer() {
+                const totalPresentationTime = slideTiming.reduce((a, b) => a + b, 0);
+                const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                const currentSlideElapsed = Math.floor((Date.now() - currentSlideStartTime) / 1000);
+                const currentSlideTarget = slideTiming[currentSlide];
+                
+                timer.innerHTML = `
+                    <div style="font-size: 0.9em; color: #ffd700;">Target: ${Math.floor(currentSlideTarget / 60)}:${(currentSlideTarget % 60).toString().padStart(2, '0')}</div>
+                    <div style="font-size: 0.9em; color: #4cc9f0;">Elapsed: ${Math.floor(currentSlideElapsed / 60)}:${(currentSlideElapsed % 60).toString().padStart(2, '0')}</div>
+                    <div style="font-size: 0.8em;">Total: ${Math.floor(elapsed / 60)}:${(elapsed % 60).toString().padStart(2, '0')} / ${Math.floor(totalPresentationTime / 60)}:${(totalPresentationTime % 60).toString().padStart(2, '0')}</div>
+                `;
+                
+                requestAnimationFrame(updateTimer);
+            }
+            updateTimer();
+        }
+        
+        addSlideTimer();
+
+        // Update navigation button states
+        function updateNavButtons() {
+            document.getElementById('prev-btn').disabled = currentSlide === 0;
+            document.getElementById('next-btn').disabled = false; // Allow cycling
+        }
+
+        // Call updateNavButtons when showing slides
+        const originalShowSlide = showSlide;
+        showSlide = function(n) {
+            originalShowSlide(n);
+            updateNavButtons();
+        }
+
+        // Initialize nav buttons
+        updateNavButtons();
+    </script>
+</body>
+</html>
